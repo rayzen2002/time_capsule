@@ -13,6 +13,7 @@ import NlwLogo from './src/assets/nlw-spacetime-logo.svg'
 import { styled } from 'nativewind'
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session'
 import { useEffect } from 'react'
+import { api } from './src/lib/api'
 
 const StyledStripes = styled(Stripes)
 const discovery = {
@@ -28,7 +29,7 @@ export default function App() {
     Roboto_700Bold,
     BaiJamjuree_700Bold,
   })
-  const [request, response, signInWithGithub] = useAuthRequest(
+  const [, response, signInWithGithub] = useAuthRequest(
     {
       clientId: '5dc15376ab5714b12e7f',
       scopes: ['profile', 'delivery'],
@@ -49,8 +50,19 @@ export default function App() {
       const { code } = response.params
 
       console.log(code)
+
+      api
+        .post('/register', {
+          code,
+        })
+        .then((response) => {
+          const { token } = response.data
+
+          console.log(token)
+        })
     }
   }, [response])
+
   if (!hasLoadedFonts) {
     return null
   }
