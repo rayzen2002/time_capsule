@@ -4,6 +4,7 @@ import {
   Roboto_Flex as Roboto,
   Bai_Jamjuree as BaiJamjuree,
 } from 'next/font/google'
+import Left from '@/components/Left'
 
 const roboto = Roboto({ subsets: ['latin'], variable: '--font-roboto' })
 const baiJamjuree = BaiJamjuree({
@@ -23,7 +24,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${roboto.variable} ${baiJamjuree.variable} bg-gray-900 font-sans text-gray-100`}
       >
-        {children}
+        <main className="grid min-h-screen grid-cols-2">
+          {/* Left */}
+          <Left />
+          {/* Right */}
+          <div className="flex flex-col border-r bg-[url(../assets/stars.svg)] bg-cover p-16">
+            {children}
+          </div>
+        </main>
       </body>
     </html>
   )
