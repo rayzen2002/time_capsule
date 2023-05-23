@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {/* Left */}
           <Left />
           {/* Right */}
-          <div className="flex flex-col border-r bg-[url(../assets/stars.svg)] bg-cover p-16">
+          <div className="flex max-h-screen flex-col overflow-y-scroll border-r bg-[url(../assets/stars.svg)] bg-cover">
             {children}
           </div>
         </main>
